@@ -16,10 +16,11 @@ function valid(req, res) {
     var signature = req.params.signature;
     var timestamp = req.params.timestamp;
     var nonce = req.params.nonce;
+    var echostr = req.params.echostr;
     var token = TOKEN;
-    res.send(isLegel(signature, timestamp, nonce, token));
+    // res.send(isLegel(signature, timestamp, nonce, token));
     if (isLegel(signature, timestamp, nonce, token)) {
-        res.send('success');
+        res.send(echostr);
     } else {
         res.send('fail');
     }
@@ -35,7 +36,7 @@ function isLegel(signature, timestamp, nonce, token) {
     var msg = array[0] + array[1] + array[2];
     hasher.update(msg);
     var msg = hasher.digest('h<span></span>ex'); //计算SHA1值   
-    return [msg,signature];
+    // return [msg,signature];
     if (msg == signature) {
         return true;
     } else {
