@@ -17,6 +17,7 @@ function valid(req, res) {
     var timestamp = req.params.timestamp;
     var nonce = req.params.nonce;
     var token = TOKEN;
+    res.send(isLegel(signature, timestamp, nonce, token));
     if (isLegel(signature, timestamp, nonce, token)) {
         res.send('success');
     } else {
@@ -34,7 +35,7 @@ function isLegel(signature, timestamp, nonce, token) {
     var msg = array[0] + array[1] + array[2];
     hasher.update(msg);
     var msg = hasher.digest('h<span></span>ex'); //计算SHA1值   
-    res.send(msg);
+    return [msg,signature];
     if (msg == signature) {
         return true;
     } else {
