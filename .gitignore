@@ -1,0 +1,18 @@
+
+build/
+
+
+
+###############
+#    file   #
+###############
+.DS_Store
+*.bak
+imini.*
+
+node_modules/
+node_modules.bak/
+ncp-debug.log
+npm-debug.log
+
+
