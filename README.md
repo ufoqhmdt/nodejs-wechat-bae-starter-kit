@@ -6,16 +6,19 @@
 
 ### 开始使用
 
-	* 打开server.js文件.找到如下代码,并根据你的微信应用添加配置.
-	```javascript
-	var config = {
-	    token: '', //你的自定义token,请保持wechat一致
-	    appid: '', //你的appid
-	    encodingAESKey: '', //你的endcodingAESKey
-	};
-	```
-	* 然后打开server.js,因为基于BAE,所以请请直接上传BAE运行.
-	```shell
-	npm install
-	npm start
-	```
+* 打开server.js文件.找到如下代码,并根据你的微信应用添加配置.
+
+```javascript
+var config = {
+    token: '', //你的自定义token,请保持wechat一致
+    appid: '', //你的appid
+    encodingAESKey: '', //你的endcodingAESKey
+};
+```
+
+* 然后打开server.js,因为基于BAE,所以请请直接上传BAE运行.
+
+```shell
+npm install
+npm start
+```
