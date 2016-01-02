@@ -8,6 +8,7 @@ var config = {
     encodingAESKey: 'kvWbiHoAL18MInuJ29tV7qD5ssDQFTjF53SwjDjF4Id', //你的endcodingAESKey
 };
 
+//http://mp.weixin.qq.com/wiki/8/f9a0b8382e0b77d87b3bcc1ce6fbc104.html
 var checkSignature = function(query, token) {
     var signature = query.signature;
     var timestamp = query.timestamp;
