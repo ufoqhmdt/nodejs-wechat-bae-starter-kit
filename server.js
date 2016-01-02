@@ -66,6 +66,7 @@ var checkSignature = function (query, token) {
 
 app.get('/', function(req, res) {
     // valid(req, res);
+    console.log('--------------');
     console.log(req);
     checkSignature(req.query,'wexin');
     res.send(req);
