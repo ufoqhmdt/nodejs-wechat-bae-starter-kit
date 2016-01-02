@@ -5,7 +5,7 @@ var wechat = require('wechat');
 var config = {
     token: 'weixin',//你的自定义token,请保持wechat一致
     appid: 'wx870eb5ff3f3c932f',//你的appid
-    encodingAESKey: 'a1nOMWFM1ygbUJLCbE6A5iSIFp1OiYxbkHx91SNUi30',//你的endcodingAESKey
+    encodingAESKey: 'kvWbiHoAL18MInuJ29tV7qD5ssDQFTjF53SwjDjF4Id',//你的endcodingAESKey
 };
 
 var checkSignature = function(query, token) {
