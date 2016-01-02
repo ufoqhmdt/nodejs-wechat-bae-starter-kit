@@ -1,4 +1,4 @@
-# nodejs-wechat-bae-start-kit
+# nodejs-wechat-bae-starter-kit
 基于nodejs,运行在百度应用引擎的,可以直接接入微信的sample project.
 ### 介绍
 微信官网的文档只提供了PHP的sample code,在网络上面少有nodejs的相关sample project. 本项目是按照微信官网的文档,用nodejs实现的一个简单实例,可以轻松接入微信.并根据你自己的业务添加业务代码.
