@@ -3,9 +3,9 @@ var crypto = require('crypto');
 var app = express();
 var wechat = require('wechat');
 var config = {
-    token: 'weixin',//你的自定义token,请保持wechat一致
-    appid: 'wx870eb5ff3f3c932f',//你的appid
-    encodingAESKey: 'kvWbiHoAL18MInuJ29tV7qD5ssDQFTjF53SwjDjF4Id',//你的endcodingAESKey
+    token: 'weixin', //你的自定义token,请保持wechat一致
+    appid: 'wx870eb5ff3f3c932f', //你的appid
+    encodingAESKey: 'kvWbiHoAL18MInuJ29tV7qD5ssDQFTjF53SwjDjF4Id', //你的endcodingAESKey
 };
 
 var checkSignature = function(query, token) {
@@ -21,8 +21,11 @@ var checkSignature = function(query, token) {
 };
 
 app.get('/', function(req, res) {
-    checkSignature(req.query, config.token);
-    res.send(req.query.echostr);
+    if (checkSignature(req.query, config.token)) {
+        res.send(req.query.echostr);
+    } else {
+        res.send('error');
+    }
 });
 
 app.use(express.query());
