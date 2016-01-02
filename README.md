@@ -16,7 +16,7 @@ var config = {
 };
 ```
 
-* 然后打开server.js,因为基于BAE,所以请请直接上传BAE运行.
+* 然后打开server.js,因为基于BAE,所以请直接上传BAE运行.
 
 ```shell
 npm install
