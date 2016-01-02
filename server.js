@@ -1,56 +1,12 @@
-// var http = require('http');
-// var port = 18080;
-// http.createServer(function(req, res) {
-//     res.writeHead(200, {'Content-Type': 'text/html'});
-//     res.write('<h1>Node.js</h1>');
-//     res.end('<p>Hello World</p>');
-// }).listen(port);
-
-
 var express = require('express');
-var crypto = require("crypto");
+var crypto = require('crypto');
 var app = express();
-
-function valid(req, res) {
-    var TOKEN = 'weixin';
-    var signature = req.params.signature;
-    var timestamp = req.params.timestamp;
-    var nonce = req.params.nonce;
-    var echostr = req.params.echostr;
-    var token = TOKEN;
-    // res.send(isLegel(signature, timestamp, nonce, token));
-    if (isLegel(signature, timestamp, nonce, token)) {
-        res.send(echostr);
-    } else {
-        res.send('fail');
-    }
-
-
-}
-
-function isLegel(signature, timestamp, nonce, token) {
-    var array = new Array();
-    array[0] = timestamp;
-    array[1] = nonce;
-    array[2] = token;
-    array.sort();
-    var hasher = crypto.createHash("sha1");
-    var msg = array[0] + array[1] + array[2];
-    hasher.update(msg);
-    var msg = hasher.digest('hex'); //计算SHA1值   
-    // return [msg,signature];
-    if (msg == signature) {
-        return true;
-    } else {
-        return false;
-    }
-
-    // var shasum = crypto.createHash('sha1');
-    // var arr = [this.token, timestamp, nonce, encrypt].sort();
-    // shasum.update(arr.join(''));
-
-    // return shasum.digest('hex');
-}
+var wechat = require('wechat');
+var config = {
+    token: 'weixin',//你的自定义token,请保持wechat一致
+    appid: 'wx870eb5ff3f3c932f',//你的appid
+    encodingAESKey: 'a1nOMWFM1ygbUJLCbE6A5iSIFp1OiYxbkHx91SNUi30',//你的endcodingAESKey
+};
 
 var checkSignature = function(query, token) {
     var signature = query.signature;
@@ -65,26 +21,9 @@ var checkSignature = function(query, token) {
 };
 
 app.get('/', function(req, res) {
-    // valid(req, res);
-    console.log('--------------');
-    console.log(req);
-    checkSignature(req.query, 'wexin');
-    // res.send({ufo:req.query});
-    // res.send({ufo:req});
-    // res.send({
-    //     query: req.query,
-    //     params: req.params
-    // });
-res.send(req.query.echostr);
-
+    checkSignature(req.query, config.token);
+    res.send(req.query.echostr);
 });
-
-var wechat = require('wechat');
-var config = {
-    token: 'weixin',
-    appid: 'wx870eb5ff3f3c932f',
-    encodingAESKey: 'R4fdRXMHzN4MdJtTtAmXgYULP9dv41be9Ns9oGfzyJS'
-};
 
 app.use(express.query());
 
@@ -99,13 +38,13 @@ app.use('/wechat', wechat(config, function(req, res, next) { // 微信输入信�
         });
     } else if (message.FromUserName === 'hehe') { // 回复一段音乐     
         res.reply({
-            type: "music",
+            type: 'music',
             content: {
-                title: "来段音乐吧",
-                description: "一无所有",
-                musicUrl: "http://mp3.com/xx.mp3",
-                hqMusicUrl: "http://mp3.com/xx.mp3",
-                thumbMediaId: "thisThumbMediaId"
+                title: '来段音乐吧',
+                description: '一无所有',
+                musicUrl: 'http://mp3.com/xx.mp3',
+                hqMusicUrl: 'http://mp3.com/xx.mp3',
+                thumbMediaId: 'thisThumbMediaId'
             }
         });
     } else { // 回复高富帅(图文回复)     
@@ -118,10 +57,8 @@ app.use('/wechat', wechat(config, function(req, res, next) { // 微信输入信�
     }
 }));
 
-
-
 var server = app.listen(18080, function() {
     var host = server.address().address;
     var port = server.address().port;
-    console.log('Example app listening at http://%s:%s', host, port);
+    console.log('BAE wechat app listening at http://%s:%s', host, port);
 });

@@ -1,8 +1,8 @@
 {
-  "name": "bae-nodejs",
+  "name": "nodejs-wechat-bae-start-kit",
   "version": "1.0.0",
   "author": "bae",
-  "description": "The first bae nodejs app!",
+  "description": "This project can run in BAE and communication with wechat",
   "scripts": {
     "start": "node server.js"
   },
