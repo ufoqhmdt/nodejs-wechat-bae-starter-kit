@@ -24,6 +24,8 @@ function valid(req, res) {
     } else {
         res.send('fail');
     }
+
+
 }
 
 function isLegel(signature, timestamp, nonce, token) {
@@ -35,17 +37,38 @@ function isLegel(signature, timestamp, nonce, token) {
     var hasher = crypto.createHash("sha1");
     var msg = array[0] + array[1] + array[2];
     hasher.update(msg);
-    var msg = hasher.digest('h<span></span>ex'); //计算SHA1值   
+    var msg = hasher.digest('hex'); //计算SHA1值   
     // return [msg,signature];
     if (msg == signature) {
         return true;
     } else {
         return false;
     }
+
+// var shasum = crypto.createHash('sha1');
+// var arr = [this.token, timestamp, nonce, encrypt].sort();
+// shasum.update(arr.join(''));
+
+// return shasum.digest('hex');
 }
 
+var checkSignature = function (query, token) {
+  var signature = query.signature;
+  var timestamp = query.timestamp;
+  var nonce = query.nonce;
+
+  var shasum = crypto.createHash('sha1');
+  var arr = [token, timestamp, nonce].sort();
+  shasum.update(arr.join(''));
+
+  return shasum.digest('hex') === signature;
+};
+
 app.get('/', function(req, res) {
-    valid(req, res);
+    // valid(req, res);
+
+    checkSignature(req.query,'wexin');
+    res.send(req);
 
 });
 
