@@ -45,33 +45,36 @@ function isLegel(signature, timestamp, nonce, token) {
         return false;
     }
 
-// var shasum = crypto.createHash('sha1');
-// var arr = [this.token, timestamp, nonce, encrypt].sort();
-// shasum.update(arr.join(''));
+    // var shasum = crypto.createHash('sha1');
+    // var arr = [this.token, timestamp, nonce, encrypt].sort();
+    // shasum.update(arr.join(''));
 
-// return shasum.digest('hex');
+    // return shasum.digest('hex');
 }
 
-var checkSignature = function (query, token) {
-  var signature = query.signature;
-  var timestamp = query.timestamp;
-  var nonce = query.nonce;
+var checkSignature = function(query, token) {
+    var signature = query.signature;
+    var timestamp = query.timestamp;
+    var nonce = query.nonce;
 
-  var shasum = crypto.createHash('sha1');
-  var arr = [token, timestamp, nonce].sort();
-  shasum.update(arr.join(''));
+    var shasum = crypto.createHash('sha1');
+    var arr = [token, timestamp, nonce].sort();
+    shasum.update(arr.join(''));
 
-  return shasum.digest('hex') === signature;
+    return shasum.digest('hex') === signature;
 };
 
 app.get('/', function(req, res) {
     // valid(req, res);
     console.log('--------------');
     console.log(req);
-    checkSignature(req.query,'wexin');
+    checkSignature(req.query, 'wexin');
     // res.send({ufo:req.query});
     // res.send({ufo:req});
-    res.send(req.query.echostr);
+    res.send({
+        query: req.query,
+        params: req.params
+    });
 
 });
 
