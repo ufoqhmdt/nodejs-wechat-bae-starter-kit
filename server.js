@@ -3,9 +3,9 @@ var crypto = require('crypto');
 var app = express();
 var wechat = require('wechat');
 var config = {
-    token: 'weixin', //你的自定义token,请保持wechat一致
-    appid: 'wx870eb5ff3f3c932f', //你的appid
-    encodingAESKey: 'kvWbiHoAL18MInuJ29tV7qD5ssDQFTjF53SwjDjF4Id', //你的endcodingAESKey
+    token: '', //你的自定义token,请保持wechat一致
+    appid: '', //你的appid
+    encodingAESKey: '', //你的endcodingAESKey
 };
 
 //http://mp.weixin.qq.com/wiki/8/f9a0b8382e0b77d87b3bcc1ce6fbc104.html
