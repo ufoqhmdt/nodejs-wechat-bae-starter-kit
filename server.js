@@ -71,10 +71,11 @@ app.get('/', function(req, res) {
     checkSignature(req.query, 'wexin');
     // res.send({ufo:req.query});
     // res.send({ufo:req});
-    res.send({
-        query: req.query,
-        params: req.params
-    });
+    // res.send({
+    //     query: req.query,
+    //     params: req.params
+    // });
+res.send(req.query.echostr);
 
 });
 
